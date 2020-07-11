@@ -1,3 +1,3 @@
-module github.com/oliveroneill/exponent-server-sdk-golang
+module github.com/Zarathustra2/exponent-server-sdk-golang
 
 go 1.14

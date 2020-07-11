@@ -119,9 +119,9 @@ func (c *PushClient) publishInternal(messages []PushMessage) ([]PushResponse, er
 	}
 
 	// Add the original message to each response for reference
-	for i := range r.Data {
-		r.Data[i].PushMessage = messages[i]
-	}
+	// for i := range r.Data {
+	// 	r.Data[i].PushMessage = messages[i]
+	// }
 	return r.Data, nil
 }
 

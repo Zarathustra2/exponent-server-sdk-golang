@@ -96,11 +96,6 @@ func (c *PushClient) publishInternal(messages []PushMessage) ([]PushResponse, er
 	if err != nil {
 		return nil, err
 	}
-	// Check that we didn't receive an invalid response
-	err = checkStatus(resp)
-	if err != nil {
-		return nil, err
-	}
 
 	// Validate the response format first
 	var r *Response
@@ -109,6 +104,13 @@ func (c *PushClient) publishInternal(messages []PushMessage) ([]PushResponse, er
 		// The response isn't json
 		return nil, err
 	}
+
+	// Check that we didn't receive an invalid response
+	err = checkStatus(resp)
+	if err != nil {
+		return r.Data, err
+	}
+
 	// If there are errors with the entire request, raise an error now.
 	if r.Errors != nil {
 		return nil, NewPushServerError("Invalid server response", resp, r, r.Errors)
